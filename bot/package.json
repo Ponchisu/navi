@@ -1,0 +1,30 @@
+{
+  "name": "navi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "start": "node --env-file=.env dist/index.js",
+    "dev": "pnpm run build && pnpm run start",
+    "command": "tsc && node --env-file=.env dist/deploy-commands.js"
+  },
+  "keywords": [],
+  "author": "Ponchis",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.1.1",
+      "onFail": "download"
+    }
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "discord.js": "^14.26.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "typescript": "^6.0.3"
+  }
+}
