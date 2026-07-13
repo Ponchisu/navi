@@ -10,7 +10,7 @@ module.exports = {
         const dirCommands = join(global.__dirbase, "commands");
         readdirSync(dirCommands).forEach((folder) => {
             console.log("> [Module] " + folder);
-            readdirSync(join(dirCommands, folder)).forEach((file) => {
+            readdirSync(join(dirCommands, folder)).filter((file) => file.endsWith('.js')).forEach((file) => {
                 let command: SlashCommand = require(join(dirCommands, folder, file)).default;
                 if('data' in command && 'execute' in command) {
                     clint.slashCommand.set(command.data.name, command);

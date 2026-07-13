@@ -18,7 +18,6 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
 			logConfirm(`The command in ${file} was loaded successfully.`);
-			console.log(command.data.name);
 		} else {
 			logWarning(`The command at ${file} is missing a required "data" or "execute" property.`);
 		}

@@ -10,7 +10,7 @@ module.exports = {
     execute: (client: Client) => {
         logInfo("Loading events");
         const dirEvents = join(global.__dirbase, "events");
-        readdirSync(dirEvents).forEach((file) => {
+        readdirSync(dirEvents).filter((file) => file.endsWith('.js')).forEach((file) => {
             let event: BotEvent = require(join(dirEvents, file)).default;
             if(event.once == true) { 
                 client.once(event.name, (...args) => event.execute(...args)) 

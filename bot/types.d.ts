@@ -1,19 +1,21 @@
-import { SlashCommandBuilder, Collection, AutocompleteInteraction } from "discord.js"
+import { SlashCommandBuilder, Collection, AutocompleteInteraction, ChatInputCommandInteraction } from "discord.js"
 
 declare global {
     var __dirbase: string
 }
 
 export interface SlashCommand {
-    data: SlashCommandBuilder
-    execute: (interaction: GuildedInteraction) => void
-    autocomplete?:(interaction: AutocompleteInteraction) => void
-    cooldown?: number;
+    data: SlashCommandBuilder,
+    execute: (interaction: ChatInputCommandInteraction<CacheType>) => void,
+    // autocomplete?:(interaction: AutocompleteInteraction) => void,
+    cooldown?: number,
+    cooldownMessage?: (interaction: ChatInputCommandInteraction<CacheType>, time: number) => Promise<InteractionResponse<boolean>>
 }
 
 declare module "discord.js" {
     export interface Client {
-        slashCommand: Collection<string, SlashCommand>
+        slashCommand: Collection<string, SlashCommand>,
+        cooldown: Collection<string, number>
     }
 }
 

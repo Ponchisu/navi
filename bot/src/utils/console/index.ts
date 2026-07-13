@@ -19,3 +19,7 @@ export function logConfirm(message: String): void {
 export function logConecting(tag: String): void {
     console.log(chalk.bgCyanBright("[CONECTING]") + chalk.cyanBright(` >>> ${tag} is ​​connecting`));
 } 
+
+export function logExcecute(command: String): void {
+    console.log(chalk.whiteBright("[Execute]") + chalk.whiteBright(` >>> ${command} was excecuted`));
+} 
