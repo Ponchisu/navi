@@ -27,13 +27,13 @@ if(!process.env.TOKEN || !process.env.CLIENT_ID) {
 }
 
 client.slashCommand = new Collection<string, SlashCommand>;
+client.cooldown = new Collection<string, number>;
 
 global.__dirbase = __dirname;
 
 const dirHandlers = join(__dirname, "handlers");
-readdirSync(dirHandlers).forEach((handler) => {
+readdirSync(dirHandlers).filter((file) => file.endsWith('.js')).forEach((handler) => {
     require(`${dirHandlers}/${handler}`).execute(client);
 });
-
 
 client.login(process.env.TOKEN);

@@ -1,13 +1,18 @@
 import { SlashCommand } from "../../../types";
-import {SlashCommandBuilder} from "discord.js"
-
+import { SlashCommandBuilder, EmbedBuilder } from "discord.js"
 
 const command: SlashCommand = {
     data: new SlashCommandBuilder()
         .setName("ping")
         .setDescription("Hacer un ping al bot"),
-    execute: async (interation) => {
-        interation.reply('Pong 🏓');
+    execute: async (interaction) => {
+        interaction.reply({
+            embeds: [
+                new EmbedBuilder()
+                    .setDescription(`Pong🏓\nPing⌛️:\`${interaction.client.ws.ping}ms\``)
+                    .setColor('#13425e')
+            ]
+        });
     }
 }
 
