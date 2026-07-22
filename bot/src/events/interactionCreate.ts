@@ -39,11 +39,13 @@ const event = {
             logExcecute(command.data.name);
             await command?.execute(interaction);
         } catch(error) {
-                logError(error as string);
+            if(error instanceof Error) {
+                logError(error.message);
                 await interaction.reply({
                     content: 'There was an error while executing this command!',
                     flags: MessageFlags.Ephemeral,
                 });
+            }
         }
     }
 }

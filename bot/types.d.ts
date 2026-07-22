@@ -1,11 +1,11 @@
-import { SlashCommandBuilder, Collection, AutocompleteInteraction, ChatInputCommandInteraction } from "discord.js"
+import { SlashCommandBuilder, SlashCommandOptionsOnlyBuilder, Collection, AutocompleteInteraction, ChatInputCommandInteraction } from "discord.js"
 
 declare global {
     var __dirbase: string
 }
 
 export interface SlashCommand {
-    data: SlashCommandBuilder,
+    data: SlashCommandBuilder | SlashCommandOptionsOnlyBuilder,
     execute: (interaction: ChatInputCommandInteraction<CacheType>) => void,
     // autocomplete?:(interaction: AutocompleteInteraction) => void,
     cooldown?: number,
